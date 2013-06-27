@@ -246,29 +246,11 @@ LABEL fog.local
 	If you are unsure, select this option.")."
 	ENDTEXT
 
-LABEL fog.memtest
-	$encMemTest
-	kernel " . getSetting( $conn, "FOG_MEMTEST_KERNEL" ) . "
-	MENU LABEL "._("Run Memtest86+")."
-	TEXT HELP
-	"._("Run Memtest86+ on the client computer.")."
-	ENDTEXT
-
-LABEL fog.reg
-	$encRegInput
-	kernel " . getSetting( $conn, "FOG_TFTP_PXE_KERNEL" ) . "
-	append initrd=" . getSetting( $conn, "FOG_PXE_BOOT_IMAGE" ) . " root=/dev/ram0 rw ramdisk_size=" . getSetting( $conn, "FOG_KERNEL_RAMDISK_SIZE" ) . " ip=dhcp dns=" . getSetting( $conn, "FOG_PXE_IMAGE_DNSADDRESS" ) . " mode=autoreg keymap=" . getSetting( $conn, "FOG_KEYMAP" ) . " web=" . getSetting( $conn, "FOG_WEB_HOST" ) . getSetting( $conn, "FOG_WEB_ROOT" ) . " loglevel=4 consoleblank=0
-	MENU LABEL "._("Quick Host Registration and Inventory")."
-	TEXT HELP
-	"._("Automatically register the client computer,
-	and perform a hardware inventory.")."
-	ENDTEXT
-
 LABEL fog.reginput
 	$encReg
 	kernel " . getSetting( $conn, "FOG_TFTP_PXE_KERNEL" ) . "
 	append initrd=" . getSetting( $conn, "FOG_PXE_BOOT_IMAGE" ) . " root=/dev/ram0 rw ramdisk_size=" . getSetting( $conn, "FOG_KERNEL_RAMDISK_SIZE" ) . " ip=dhcp dns=" . getSetting( $conn, "FOG_PXE_IMAGE_DNSADDRESS" ) . " mode=manreg keymap=" . getSetting( $conn, "FOG_KEYMAP" ) . " web=" . getSetting( $conn, "FOG_WEB_HOST" ) . getSetting( $conn, "FOG_WEB_ROOT" ) . " loglevel=4 consoleblank=0
-	MENU LABEL "._("Perform Full Host Registration and Inventory")."
+	MENU LABEL "._("Register and Inventory")."
 	TEXT HELP
 	"._("Perform a full host registration on the client
 	computer, perform a hardware inventory, and 
@@ -283,6 +265,14 @@ LABEL fog.quickimage
 	TEXT HELP
 	"._("This mode will allow you to image this host quickly with
 	it's default assigned image.")."
+	ENDTEXT
+
+LABEL fog.memtest
+	$encMemTest
+	kernel " . getSetting( $conn, "FOG_MEMTEST_KERNEL" ) . "
+	MENU LABEL "._("Run Memtest86+")."
+	TEXT HELP
+	"._("Run Memtest86+ on the client computer.")."
 	ENDTEXT
 
 LABEL fog.sysinfo
